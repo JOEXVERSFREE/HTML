@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Copy Text Example</title>
+    <style>
+      /* Center the content */
+      body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        background-color: #f9f9f9;
+      }
+      /* Style the text box */
+      .textbox {
+        border: none;
+        background-color: #f1f1f1;
+        border-radius: 10px;
+        padding: 16px;
+        width: 400%;
+        height: 30px;
+        font-size: 18px;
+        resize: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        font-family: "Helvetica Neue", sans-serif;
+        color: #333;
+        line-height: 1.5;
+        transition: box-shadow 0.3s ease-in-out;
+      }
+      /* Style the copy button */
+      .copybtn {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        padding: 8px;
+        font-size: 16px;
+        margin-top: 16px;
+      }
+      /* Style the copy button when hovered */
+      .copybtn:hover {
+        background-color: #3e8e41;
+      }
+      /* Style the text box when focused */
+      .textbox:focus {
+        outline: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      }
+      /* Style the non-editable text inside the text box */
+      .readonly {
+        background-color: #f1f1f1;
+        color: #333;
+        cursor: default;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Copy Text Example</h1>
+    <div>
+      <p>Here's some text you can copy:</p>
+      <!-- Add a text box for the first text with non-editable text -->
+      <textarea id="text1" rows="5" readonly class="textbox readonly">loadstring(game:HttpGet("https://raw.githubusercontent.com/Mainstreamed/Trident-Survival/main/mainstreametsfree", true))()</textarea>
+      <!-- Add the copy button inside the text box -->
+      <button class="copybtn" onclick="copyText('text1')">Copy</button>
+    </div>
+    <div>
+      <p>And here's some more text you can copy:</p>
+      <!-- Add a text box for the second text with non-editable text -->
+      <textarea id="text2" rows="5" readonly class="textbox readonly">This text is also not editable</textarea>
+      <!-- Add the copy button inside the text box -->
+      <button class="copybtn" onclick="copyText('text2')">Copy</button>
+    </div>
+    
+    <script>
+      function copyText(id) {
+        // Get the text element by id
+        var text = document.getElementById(id);
+        
+        // Create a temporary textarea element
+        var temp = document.createElement('textarea');
+        temp.value = text.value;
+        
+        // Append the textarea to the body and select its contents
+        document.body.appendChild(temp);
+        temp.select();
+        
+        // Copy the selected text to the clipboard
+        document.execCommand('copy');
+        
+        // Remove the temporary textarea
+        document.body.removeChild(temp);
+
+        // Remove the temporary textarea
+        document.body.removeChild(temp);
+        
+        // Show a message to indicate successful copy
+        alert('Text copied to clipboard!');
+      }
+    </script>
+  </body>
+</html>
